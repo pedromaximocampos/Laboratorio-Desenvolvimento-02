@@ -1,0 +1,85 @@
+@startuml
+
+
+
+class Cliente{
+ -id:int;
+ -nome:String;
+ -Usuario:Usuario;
+ -RG:String;
+ -CPF:String;
+ -Profissao:Profissao;
+ -Endereco:Endereco;
+}
+
+
+
+class Endereco{
+-id:int;
+-CEP:String;
+-Numero:int;
+-Complemento:String;
+}
+
+class Profissao{
+-id:int;
+-Cargo:String;
+-Empresa:String;
+-Salario:double;
+}
+
+class Automovel{
+-id:int;
+-Matricula:String;
+-Ano:String;
+-Marca:String;
+-Modelo:String;
+-Placa:String;
+}
+
+class Contrato{
+-id:int;
+-Valor:double;
+-Pedido:Pedido;
+}
+
+class Pedido{
+-id:int;
+-Automovel:Automovel;
+-Cliente:Cliente;
+-Status:StatusPedido
+}
+
+enum StatusPedido{
+    APROVADO;
+    PENDENTE;
+    CANCELADO;
+}
+
+package "Autenticador" #DDDDDD {
+
+class Usuario{
+-Id:int;
+-Login:String;
+-Senha:String;
+-Role:Role;
+}
+
+enum Role{
+    CLIENTE;
+    AGENTE;
+}
+
+Usuario -- Role
+}
+
+
+Cliente -- Pedido
+Automovel -- Pedido
+Contrato -- Pedido
+Pedido -- StatusPedido
+Cliente -- Usuario
+Cliente -- Profissao
+Cliente *- Endereco
+
+@enduml
