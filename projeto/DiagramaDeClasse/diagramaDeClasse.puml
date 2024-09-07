@@ -1,83 +1,108 @@
 @startuml
-
-
-
-class Cliente{
- -id:int;
- -nome:String;
- -Usuario:Usuario;
- -RG:String;
- -CPF:String;
- -Profissao:Profissao;
- -Endereco:Endereco;
-}
-
-
-
-class Endereco{
--id:int;
--CEP:String;
--Numero:int;
--Complemento:String;
-}
-
-class Profissao{
--id:int;
--Cargo:String;
--Empresa:String;
--Salario:double;
-}
-
-class Automovel{
--id:int;
--Matricula:String;
--Ano:String;
--Marca:String;
--Modelo:String;
--Placa:String;
-}
-
-class Contrato{
--id:int;
--Valor:double;
--Pedido:Pedido;
-}
-
-class Pedido{
--id:int;
--Automovel:Automovel;
--Cliente:Cliente;
--Status:StatusPedido
-}
-
-enum StatusPedido{
-    APROVADO;
-    PENDENTE;
-    CANCELADO;
-}
+skinparam classAttributeIconSize 0
 
 package "Autenticador" #DDDDDD {
 
 class Usuario{
--Id:int;
--Login:String;
--Senha:String;
--Role:Role;
+-id:int
+-login:String
+-senha:String
+-role:Role
+
++login(login: String, senha: String): String
 }
 
 enum Role{
-    CLIENTE;
-    AGENTE;
+    CLIENTE
+    AGENTE
 }
 
 Usuario -- Role
 }
 
+class Agente{
+- id:int
+- usuario: Usuario
 
-Cliente -- Pedido
-Automovel -- Pedido
-Contrato -- Pedido
++modificarPedido(idPedido: int, pedido: Pedido): Pedido
++avaliarPedido(idPedido: int, status: StatusPedido): Pedido
+}
+
+class Cliente{
+ -id:int
+ -nome:String
+ -RG:String
+ -CPF:String
+ -usuario:Usuario
+ -profissao:Profissao
+ -endereco:Endereco
+ -rendimentosAuferidos: List<double>
+
+ +cadastrar(cliente: Cliente): Cliente
+ +introduzirPedido(idCliente: int, idAutomovel: int): Pedido
+ +modificarPedido(idPedido: int, pedido: Pedido): Pedido
+ +consultarPedido(idPedido: int): Pedido
+ +cancelarPedido(idPedido: int): void
+}
+
+class Endereco{
+-id:int
+-CEP:String
+-numero:int
+-complemento:String
+}
+
+class Profissao{
+-id:int
+-cargo:String
+-empresa:String
+-salario:double
+}
+
+class Automovel{
+-id:int
+-matricula:String
+-ano:String
+-marca:String
+-modelo:String
+-placa:String
+-proprietario: String
+-disponivel: boolean
+
++alterarDono(novoProprietario: String): Automovel
++verificarDisponibilidade(): boolean
+}
+
+class Contrato{
+-id:int
+-valor:double
+-pedido:Pedido
+}
+
+class Pedido{
+-id:int
+-data: Date
+-automovel:Automovel
+-cliente:Cliente
+-agente:Agente
+-status:StatusPedido
+
++alterarStatus(status: StatusPedido): Pedido
+}
+
+enum StatusPedido{
+    APROVADO
+    PENDENTE
+    CANCELADO
+}
+
+
+Pedido -- Cliente
+Pedido -- Automovel
+Pedido -- Contrato
+Pedido -- Agente
 Pedido -- StatusPedido
+
 Cliente -- Usuario
 Cliente -- Profissao
 Cliente *- Endereco
