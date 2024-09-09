@@ -1,0 +1,37 @@
+@startuml
+"User" as User
+"Usuario cadastrado Agente" as AgenteUserLoged
+"Usuario cadastrado Cliente" as ClientUserLoged
+"Sistema" as System
+
+"Cadastra" as (Cadastro)
+"Esolhe tipo Usuario" as (UserType)
+"Introduzir Pedidos" as (introPedi)
+"Modificar Pedidos" as (modPedi)
+"Consultar Pedidos" as (consulPed)
+"Cancelar Pedidos" as (cancelPed)
+"Avaliar Pedidos" as (avalPed)
+"Adiciona consideracao" as (addConcideracao)
+"Armazenar dados contrates" as (armazenDataContratantes)
+"Armazenar dados veiculo" as (armazenDataVeiculo)
+"Verifica tipo contrato" as (verificaTipoContrato)
+"Vincula veiculo a um dono" as (vinculaVeiculoDono)
+
+
+User --> (Cadastro)
+ClientUserLoged --> (introPedi)
+ClientUserLoged --> (modPedi)
+ClientUserLoged --> (consulPed)
+ClientUserLoged --> (cancelPed)
+
+AgenteUserLoged --> (modPedi)
+AgenteUserLoged --> (avalPed)
+
+System --> (armazenDataContratantes)
+System --> (armazenDataVeiculo)
+System --> (verificaTipoContrato)
+
+Cadastro .> (UserType) : includes
+(avalPed) .> (addConcideracao) : extends
+(verificaTipoContrato) .> (vinculaVeiculoDono) : extends
+@enduml
