@@ -20,14 +20,6 @@ enum Role{
 Usuario -- Role
 }
 
-class Agente{
-- id:int
-- usuario: Usuario
-
-+modificarPedido(idPedido: int, pedido: Pedido): Pedido
-+avaliarPedido(idPedido: int, status: StatusPedido): Pedido
-}
-
 class Cliente{
  -id:int
  -nome:String
@@ -39,10 +31,6 @@ class Cliente{
  -rendimentosAuferidos: List<double>
 
  +cadastrar(cliente: Cliente): Cliente
- +introduzirPedido(idCliente: int, idAutomovel: int): Pedido
- +modificarPedido(idPedido: int, pedido: Pedido): Pedido
- +consultarPedido(idPedido: int): Pedido
- +cancelarPedido(idPedido: int): void
 }
 
 class Endereco{
@@ -69,7 +57,8 @@ class Automovel{
 -proprietario: String
 -disponivel: boolean
 
-+alterarDono(novoProprietario: String): Automovel
++vincularProprietario(novoProprietario: String): Automovel
++alterarDisponibilidade(disponivel: bololean): void
 +verificarDisponibilidade(): boolean
 }
 
@@ -77,6 +66,8 @@ class Contrato{
 -id:int
 -valor:double
 -pedido:Pedido
+
++gerarContrato(contrato: Contrato): Contrato
 }
 
 class Pedido{
@@ -84,10 +75,13 @@ class Pedido{
 -data: Date
 -automovel:Automovel
 -cliente:Cliente
--agente:Agente
 -status:StatusPedido
 
-+alterarStatus(status: StatusPedido): Pedido
++introduzirPedido(idCliente: int, idAutomovel: int): Pedido
++modificarPedido(idPedido: int, pedido: Pedido): Pedido
++consultarPedido(idPedido: int): Pedido
++cancelarPedido(idPedido: int): void
++avaliarPedido(idPedido: int, status: StatusPedido): Pedido
 }
 
 enum StatusPedido{
@@ -96,11 +90,9 @@ enum StatusPedido{
     CANCELADO
 }
 
-
 Pedido -- Cliente
 Pedido -- Automovel
 Pedido -- Contrato
-Pedido -- Agente
 Pedido -- StatusPedido
 
 Cliente -- Usuario
