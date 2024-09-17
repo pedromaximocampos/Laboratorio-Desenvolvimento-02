@@ -1,23 +1,37 @@
 @startuml
 skinparam classAttributeIconSize 0
 
-package "Autenticador" #DDDDDD {
+'package "Autenticador" #DDDDDD {
+'
+'class Usuario{
+'-id:int
+'-login:String
+'-senha:String
+'-role:Role
+'
+'+login(login: String, senha: String): String
+'}
+'
+'enum Role{
+'    CLIENTE
+'    EMPRESA
+'    BANCO
+'}
+
+'Usuario -- Role
+'}
 
 class Usuario{
 -id:int
 -login:String
 -senha:String
 -role:Role
-
-+login(login: String, senha: String): String
 }
 
-enum Role{
-    CLIENTE
-    AGENTE
+class Agente{
 }
 
-Usuario -- Role
+class Banco{
 }
 
 class Cliente{
@@ -43,8 +57,13 @@ class Endereco{
 class Profissao{
 -id:int
 -cargo:String
--empresa:String
+-empresa: Empresa
 -salario:double
+}
+
+class Empresa{
+-id:int
+-nome:String
 }
 
 class Automovel{
@@ -77,7 +96,6 @@ class Pedido{
 -cliente:Cliente
 -status:StatusPedido
 
-+introduzirPedido(idCliente: int, idAutomovel: int): Pedido
 +modificarPedido(idPedido: int, pedido: Pedido): Pedido
 +consultarPedido(idPedido: int): Pedido
 +cancelarPedido(idPedido: int): void
@@ -89,14 +107,18 @@ enum StatusPedido{
     PENDENTE
     CANCELADO
 }
-
 Pedido -- Cliente
 Pedido -- Automovel
 Pedido -- Contrato
 Pedido -- StatusPedido
 
-Cliente -- Usuario
+Usuario <-- Cliente
+Usuario <-- Agente
+Agente <-- Banco
+
 Cliente -- Profissao
 Cliente *- Endereco
+
+Profissao -- Empresa
 
 @enduml
