@@ -1,0 +1,53 @@
+@startuml
+package "Locadora" {
+
+  package "Controller" {
+    class UsuarioController
+    class AgenteController
+    class ClienteController
+    class AutomovelController
+    class PedidoController
+    class ContratoController
+    class EnderecoController
+    class ProfissaoController
+    }
+
+  package "Model" {
+    class UsuarioModel
+    class AgenteModeL
+    class ClienteModel
+    class AutomovelModel
+    class PedidoModel
+    class ContratoModel
+    class EnderecoModel
+    class ProfissaoModel
+  }
+
+  package "Service" {
+    class UsuarioService
+    class AgenteService
+    class ClienteService
+    class AutomovelService
+    class PedidoService
+    class ContratoService
+    class EnderecoService
+    class ProfissaoService
+  }
+
+  package "Repository" {
+      class UsuarioRepository
+      class AgenteRepository
+      class ClienteRepository
+      class AutomovelRepository
+      class PedidoRepository
+      class ContratoRepository
+      class EnderecoRepository
+      class ProfissaoRepository
+    }
+
+  Controller .> Service : Interage
+  Service ..> Repository : Interage
+  Service ...> Model : Interage
+  Repository ...> Model: Interage
+}
+@enduml
