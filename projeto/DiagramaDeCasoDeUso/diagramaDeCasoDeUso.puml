@@ -3,6 +3,7 @@
 "Usuario cadastrado Agente" as AgenteUserLoged
 "Usuario cadastrado Cliente" as ClientUserLoged
 "Sistema" as System
+"Banco Agente" as BancoAgente
 
 "Cadastra" as (Cadastro)
 "Esolhe tipo Usuario" as (UserType)
@@ -10,13 +11,13 @@
 "Modificar Pedidos" as (modPedi)
 "Consultar Pedidos" as (consulPed)
 "Cancelar Pedidos" as (cancelPed)
-"Avaliar Pedidos" as (avalPed)
+"Analisar Pedidos do ponto de vista financeiro" as (avalPed)
 "Adiciona consideracao" as (addConcideracao)
 "Armazenar dados contrates" as (armazenDataContratantes)
 "Armazenar dados veiculo" as (armazenDataVeiculo)
 "Verifica tipo contrato" as (verificaTipoContrato)
 "Vincula veiculo a um dono" as (vinculaVeiculoDono)
-
+"Conceder contrato de credito" as (contratoCredito)
 
 User --> (Cadastro)
 ClientUserLoged --> (introPedi)
@@ -31,6 +32,7 @@ System --> (armazenDataContratantes)
 System --> (armazenDataVeiculo)
 System --> (verificaTipoContrato)
 
+BancoAgente --> (contratoCredito)
 Cadastro .> (UserType) : includes
 (avalPed) .> (addConcideracao) : extends
 (verificaTipoContrato) .> (vinculaVeiculoDono) : extends
