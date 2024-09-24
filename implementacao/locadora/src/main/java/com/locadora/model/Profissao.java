@@ -21,4 +21,10 @@ public class Profissao {
     private String empresa;
 
     private Double salario;
+
+    public void updateData(Profissao profissao) {
+        this.cargo = profissao.getCargo() != null ? profissao.getCargo() : this.cargo;
+        this.empresa = profissao.getEmpresa() != null ? profissao.getEmpresa() : this.empresa;
+        this.salario = profissao.getSalario() != null ? profissao.getSalario() : this.salario;
+    }
 }

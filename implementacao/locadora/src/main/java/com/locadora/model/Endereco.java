@@ -21,4 +21,10 @@ public class Endereco {
     private int numero;
 
     private String complemento;
+
+    public void updateData(Endereco endereco) {
+        this.CEP = endereco.getCEP() != null ? endereco.getCEP() : this.CEP;
+        this.numero = endereco.getNumero() != 0 ? endereco.getNumero() : this.numero;
+        this.complemento = endereco.getComplemento() != null ? endereco.getComplemento() : this.complemento;
+    }
 }

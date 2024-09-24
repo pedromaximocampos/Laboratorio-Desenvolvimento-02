@@ -6,6 +6,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+
 @Service
 public class ClienteService {
 
@@ -28,5 +31,27 @@ public class ClienteService {
         clienteRequest.setUsuario(usuarioService.create(clienteRequest.getUsuario()));
 
         return clienteRepository.save(clienteRequest);
+    }
+
+    public List<Cliente> findAll() {
+        return clienteRepository.findAll();
+    }
+
+    public Cliente findById(Long id) {
+        return clienteRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Cliente não encontrado. Id " + id));
+    }
+
+    @Transactional
+    public Cliente update(Cliente cliente, Long id) {
+        var savedClient = findById(id);
+        savedClient.updateData(cliente);
+        return clienteRepository.save(savedClient);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        findById(id);
+        clienteRepository.deleteById(id);
     }
 }

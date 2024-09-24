@@ -35,4 +35,14 @@ public class Cliente {
     private Usuario usuario;
 
     private List<Double> rendimentosAuferidos;
+
+    public void updateData(Cliente cliente) {
+        this.nome = cliente.getNome() != null ? cliente.getNome() : this.nome;
+        this.RG = cliente.getRG() != null ? cliente.getRG() : this.RG;
+        this.CPF = cliente.getCPF() != null ? cliente.getCPF() : this.CPF;
+        this.endereco.updateData(cliente.getEndereco());
+        this.profissao.updateData(cliente.getProfissao());
+        this.usuario.updateData(cliente.getUsuario());
+        this.rendimentosAuferidos = cliente.getRendimentosAuferidos() != null ? cliente.getRendimentosAuferidos() : this.rendimentosAuferidos;
+    }
 }

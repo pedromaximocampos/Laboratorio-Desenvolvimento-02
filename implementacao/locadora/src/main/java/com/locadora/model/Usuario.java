@@ -25,4 +25,10 @@ public class Usuario {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    public void updateData(Usuario usuario) {
+        this.login = usuario.getLogin() != null ? usuario.getLogin() : this.login;
+        this.senha = usuario.getSenha() != null ? usuario.getSenha() : this.senha;
+        this.role = usuario.getRole() != null ? usuario.getRole() : this.role;
+    }
 }
