@@ -83,6 +83,7 @@ class Pedido{
 -automovel:Automovel
 -cliente:Cliente
 -status:StatusPedido
+-avaliacao: AvaliacaoPedido
 
 +introduzirPedido(idCliente: Long, idAutomovel: Long): Pedido
 +modificarPedido(idPedido: Long, automovel: Automovel): Pedido
@@ -98,10 +99,16 @@ enum StatusPedido{
     CANCELADO
 }
 
+class AvaliacaoPedido{
+-id:Long
+-descricao: String
+}
+
 Pedido -- Cliente
 Pedido -- Automovel
 Pedido -- Contrato
 Pedido -- StatusPedido
+Pedido -- AvaliacaoPedido
 
 Cliente -- Usuario
 Cliente -- Profissao
