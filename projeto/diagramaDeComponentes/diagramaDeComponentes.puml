@@ -1,0 +1,39 @@
+@startuml
+
+package "Locadora" {
+    [Controller Layer] --> [Service Layer]
+    [Service Layer] --> [Repository Layer]
+    [Repository Layer] --> [Banco de Dados]
+
+    [Frontend - Swagger] --> [Controller Layer]
+
+        component "Controller Layer" {
+            [ClienteController]
+            [UsuarioController]
+            [PedidoController]
+            [ContratoController]
+            [AutomovelController]
+        }
+
+        component "Service Layer" {
+            [ClienteService]
+            [EnderecoService]
+            [ProfissaoService]
+            [UsuarioService]
+            [PedidoService]
+            [AutomovelService]
+            [ContratoService]
+        }
+
+        component "Repository Layer" {
+            [ClienteRepository]
+            [EnderecoRepository]
+            [ProfissaoRepository]
+            [UsuarioRepository]
+            [PedidoRepository]
+            [AutomovelRepository]
+            [ContratoRepository]
+        }
+}
+
+@enduml
