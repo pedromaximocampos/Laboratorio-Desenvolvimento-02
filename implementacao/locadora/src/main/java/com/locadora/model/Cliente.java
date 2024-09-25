@@ -1,5 +1,6 @@
 package com.locadora.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +35,7 @@ public class Cliente {
     @OneToOne
     private Usuario usuario;
 
+    @ElementCollection
     private List<Double> rendimentosAuferidos;
 
     public void updateData(Cliente cliente) {
