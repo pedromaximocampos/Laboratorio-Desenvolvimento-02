@@ -1,9 +1,8 @@
 @startuml
 "User" as User
-"Usuario cadastrado Agente" as AgenteUserLoged
-"Usuario cadastrado Cliente" as ClientUserLoged
-"Sistema" as System
-"Banco Agente" as BancoAgente
+"Agente" as Agente
+"Cliente" as Cliente
+"Agente" as Agente
 
 "Cadastra" as (Cadastro)
 "Esolhe tipo Usuario" as (UserType)
@@ -13,27 +12,18 @@
 "Cancelar Pedidos" as (cancelPed)
 "Analisar Pedidos do ponto de vista financeiro" as (avalPed)
 "Adiciona consideracao" as (addConcideracao)
-"Armazenar dados contrates" as (armazenDataContratantes)
-"Armazenar dados veiculo" as (armazenDataVeiculo)
-"Verifica tipo contrato" as (verificaTipoContrato)
-"Vincula veiculo a um dono" as (vinculaVeiculoDono)
 "Conceder contrato de credito" as (contratoCredito)
 
 User --> (Cadastro)
-ClientUserLoged --> (introPedi)
-ClientUserLoged --> (modPedi)
-ClientUserLoged --> (consulPed)
-ClientUserLoged --> (cancelPed)
+Cliente --> (introPedi)
+Cliente --> (modPedi)
+Cliente --> (consulPed)
+Cliente --> (cancelPed)
 
-AgenteUserLoged --> (modPedi)
-AgenteUserLoged --> (avalPed)
+Agente --> (modPedi)
+Agente --> (avalPed)
 
-System --> (armazenDataContratantes)
-System --> (armazenDataVeiculo)
-System --> (verificaTipoContrato)
-
-BancoAgente --> (contratoCredito)
+Agente --> (contratoCredito)
 Cadastro .> (UserType) : includes
 (avalPed) .> (addConcideracao) : extends
-(verificaTipoContrato) .> (vinculaVeiculoDono) : extends
 @enduml
