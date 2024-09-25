@@ -70,6 +70,13 @@ class Contrato{
 +gerarContrato(contrato: Contrato): Contrato
 }
 
+class ContratoDeCredito{
+-id:int
+-totalParcelas:int
+-parcelasPagas:int
+}
+
+
 class Pedido{
 -id:int
 -data: Date
@@ -83,6 +90,7 @@ class Pedido{
 +cancelarPedido(idPedido: int): void
 +avaliarPedido(idPedido: int, status: StatusPedido): Pedido
 }
+
 
 enum StatusPedido{
     APROVADO
@@ -98,5 +106,7 @@ Pedido -- StatusPedido
 Cliente -- Usuario
 Cliente -- Profissao
 Cliente *- Endereco
+
+Contrato -- ContratoDeCredito
 
 @enduml
