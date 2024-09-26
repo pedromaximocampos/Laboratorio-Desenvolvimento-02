@@ -29,4 +29,17 @@ public class Automovel {
     private String proprietario;
 
     private boolean disponivel;
+
+    public void alterarDisponibildade() {
+        this.disponivel = !this.disponivel;
+    }
+
+    public boolean verificarDisponibilidade() {
+        return this.disponivel;
+    }
+
+    public Automovel vincularProprietario(String proprietario) {
+        this.proprietario = proprietario;
+        return this;
+    }
 }

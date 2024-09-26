@@ -48,6 +48,5 @@ package "Locadora" {
   Controller .> Service : Interage
   Service ..> Repository : Interage
   Service ...> Model : Interage
-  Repository ...> Model: Interage
 }
 @enduml

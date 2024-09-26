@@ -4,7 +4,7 @@ skinparam classAttributeIconSize 0
 package "Autenticador" #DDDDDD {
 
 class Usuario{
--id:int
+-id:Long
 -login:String
 -senha:String
 -role:Role
@@ -21,7 +21,7 @@ Usuario -- Role
 }
 
 class Cliente{
- -id:int
+ -id:Long
  -nome:String
  -RG:String
  -CPF:String
@@ -34,21 +34,21 @@ class Cliente{
 }
 
 class Endereco{
--id:int
+-id:Long
 -CEP:String
 -numero:int
 -complemento:String
 }
 
 class Profissao{
--id:int
+-id:Long
 -cargo:String
 -empresa:String
 -salario:double
 }
 
 class Automovel{
--id:int
+-id:Long
 -matricula:String
 -ano:String
 -marca:String
@@ -63,7 +63,7 @@ class Automovel{
 }
 
 class Contrato{
--id:int
+-id:Long
 -valor:double
 -pedido:Pedido
 
@@ -71,24 +71,25 @@ class Contrato{
 }
 
 class ContratoDeCredito{
--id:int
+-id:Long
 -totalParcelas:int
 -parcelasPagas:int
 }
 
 
 class Pedido{
--id:int
+-id:Long
 -data: Date
 -automovel:Automovel
 -cliente:Cliente
 -status:StatusPedido
+-avaliacao: AvaliacaoPedido
 
-+introduzirPedido(idCliente: int, idAutomovel: int): Pedido
-+modificarPedido(idPedido: int, pedido: Pedido): Pedido
-+consultarPedido(idPedido: int): Pedido
-+cancelarPedido(idPedido: int): void
-+avaliarPedido(idPedido: int, status: StatusPedido): Pedido
++introduzirPedido(idCliente: Long, idAutomovel: Long): Pedido
++modificarPedido(idPedido: Long, automovel: Automovel): Pedido
++consultarPedido(idPedido: Long): Pedido
++cancelarPedido(idPedido: Long): void
++avaliarPedido(idPedido: Long, status: StatusPedido): Pedido
 }
 
 
@@ -98,10 +99,16 @@ enum StatusPedido{
     CANCELADO
 }
 
+class AvaliacaoPedido{
+-id:Long
+-descricao: String
+}
+
 Pedido -- Cliente
 Pedido -- Automovel
 Pedido -- Contrato
 Pedido -- StatusPedido
+Pedido -- AvaliacaoPedido
 
 Cliente -- Usuario
 Cliente -- Profissao
