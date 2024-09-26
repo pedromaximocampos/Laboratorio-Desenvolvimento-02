@@ -1,4 +1,4 @@
-@startuml
+git @startuml
 "User" as User
 "Usuario cadastrado Agente" as AgenteUserLoged
 "Usuario cadastrado Cliente" as ClientUserLoged
