@@ -9,9 +9,11 @@ import com.locadora.repository.AutomovelRepository;
 import com.locadora.repository.AvaliacaoPedidoRepository;
 import com.locadora.repository.ClienteRepository;
 import com.locadora.repository.PedidoRepository;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+@Service
 public class PedidoService implements IPedidoService{
 
     PedidoRepository _pedidoRepository;

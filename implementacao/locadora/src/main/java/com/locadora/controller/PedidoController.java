@@ -21,23 +21,23 @@ public class PedidoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.introduzirPedido(objDTO.id_Cliente, objDTO.id_Automovel));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/consultar/{id}")
     public ResponseEntity<Pedido> consultarPedido(@PathVariable Long id) {
         return ResponseEntity.ok(pedidoService.consultaPedido(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/modificar/{id}")
     public ResponseEntity<Pedido> modificarPedido(@RequestBody Automovel automovel, @PathVariable Long id) {
         return ResponseEntity.ok(pedidoService.modificarPedido(id, automovel));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/cancelar/{id}")
     public ResponseEntity<Void> cancelarPedido(@PathVariable Long id) {
         pedidoService.cancelarPeido(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/avaliar/{id}")
     public ResponseEntity<Pedido> avaliarPedido(@RequestBody AvaliarPedidoDTO avaliarPedidoDTO, @PathVariable Long id) {
         return ResponseEntity.ok(pedidoService.avaliarPedido(id,avaliarPedidoDTO.status,avaliarPedidoDTO.avaliacao));
     }
