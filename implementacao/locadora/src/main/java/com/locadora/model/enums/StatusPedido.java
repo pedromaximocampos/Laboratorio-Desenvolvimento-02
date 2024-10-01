@@ -1,4 +1,4 @@
-package com.locadora.enums;
+package com.locadora.model.enums;
 
 public enum StatusPedido {
 

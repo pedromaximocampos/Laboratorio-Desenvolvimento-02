@@ -1,8 +1,10 @@
 package com.locadora.model.Dto;
 
-import com.locadora.enums.StatusPedido;
+import com.locadora.model.enums.StatusPedido;
+import lombok.Getter;
 
+@Getter
 public class AvaliarPedidoDTO {
-    public StatusPedido status;
-    public String avaliacao;
+    private StatusPedido status;
+    private String avaliacao;
 }

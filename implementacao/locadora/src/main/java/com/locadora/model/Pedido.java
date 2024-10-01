@@ -1,12 +1,16 @@
 package com.locadora.model;
 
-import com.locadora.enums.StatusPedido;
+import com.locadora.model.enums.StatusPedido;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "TB_PEDIDO")
 public class Pedido {
@@ -28,6 +32,11 @@ public class Pedido {
 
     @OneToOne
     private  AvaliacaoPedido avaliacaoPedido;
+
     public Pedido(LocalDate dataPedido, Automovel automovel, Cliente cliente) {
+        this.date = dataPedido;
+        this.automovel = automovel;
+        this.cliente = cliente;
+        this.status = StatusPedido.PENDENTE;
     }
 }

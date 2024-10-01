@@ -1,5 +1,6 @@
 package com.locadora.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.locadora.model.enums.Role;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -17,10 +18,12 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     private String login;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String senha;
 
     @Enumerated(EnumType.STRING)

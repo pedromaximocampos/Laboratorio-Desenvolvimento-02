@@ -1,6 +1,6 @@
 package com.locadora.service;
 
-import com.locadora.enums.StatusPedido;
+import com.locadora.model.enums.StatusPedido;
 import com.locadora.model.Automovel;
 import com.locadora.model.Pedido;
 

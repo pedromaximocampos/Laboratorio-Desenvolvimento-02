@@ -1,6 +1,6 @@
 package com.locadora.service;
 
-import com.locadora.enums.StatusPedido;
+import com.locadora.model.enums.StatusPedido;
 import com.locadora.model.Automovel;
 import com.locadora.model.AvaliacaoPedido;
 import com.locadora.model.Cliente;
@@ -32,15 +32,17 @@ public class PedidoService implements IPedidoService{
     @Override
     public Pedido introduzirPedido(Long id_Cliente, Long id_Automovel) {
         Automovel automovel = _automovelRepository.findById(id_Automovel).get();
+        automovel.setDisponivel(false);
         Cliente cliente = _clienteRepository.findById(id_Cliente).get();
         LocalDate dataPedido = LocalDate.now();
         Pedido pedido = new Pedido(dataPedido,automovel,cliente);
-        return pedido;
+        return _pedidoRepository.save(pedido);
     }
 
     @Override
     public Pedido modificarPedido(Long id_Pedido, Automovel automovel) {
         Pedido pedido = _pedidoRepository.findById(id_Pedido).get();
+        _automovelRepository.save(automovel);
         pedido.setAutomovel(automovel);
         _pedidoRepository.save(pedido);
         return pedido;
@@ -56,6 +58,7 @@ public class PedidoService implements IPedidoService{
     public void cancelarPeido(Long id_Pedido) {
         Pedido pedido = _pedidoRepository.findById(id_Pedido).get();
         pedido.setStatus(StatusPedido.CANCELADO);
+        _pedidoRepository.save(pedido);
     }
 
     @Override

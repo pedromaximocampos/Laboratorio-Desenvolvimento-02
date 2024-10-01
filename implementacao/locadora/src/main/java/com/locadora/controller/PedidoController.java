@@ -39,7 +39,7 @@ public class PedidoController {
 
     @PutMapping("/avaliar/{id}")
     public ResponseEntity<Pedido> avaliarPedido(@RequestBody AvaliarPedidoDTO avaliarPedidoDTO, @PathVariable Long id) {
-        return ResponseEntity.ok(pedidoService.avaliarPedido(id,avaliarPedidoDTO.status,avaliarPedidoDTO.avaliacao));
+        return ResponseEntity.ok(pedidoService.avaliarPedido(id,avaliarPedidoDTO.getStatus(),avaliarPedidoDTO.getAvaliacao()));
     }
 
 }
