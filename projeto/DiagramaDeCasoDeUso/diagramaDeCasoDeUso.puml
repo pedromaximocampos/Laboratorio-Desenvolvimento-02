@@ -1,4 +1,4 @@
-git @startuml
+@startuml
 "User" as User
 "Agente" as Agente
 "Cliente" as Cliente

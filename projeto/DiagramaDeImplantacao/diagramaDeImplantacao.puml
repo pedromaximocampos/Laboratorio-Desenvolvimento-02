@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/deployment-diagram
+
+node "Banco de Dados" as BD {
+   component "Persistência"
+   component "SGBD"
+}
+
+node "Cliente: Postman" {
+  component "Interface de Usuário" as UI
+}
+
+node "Servidor de Aplicação" as Server {
+  component "Clientes" {
+    [Usuário]
+    [Endereço]
+    [Profissão]
+  }
+  component "Pedidos" {
+    [Automóvel]
+    [Contrato]
+    [Status]
+  }
+}
+
+
+
+UI -- Server : "<<HTTP>>"
+Server -- BD : "<<ODBC>>"
+
+
+
+UI -[dashed]-> "Clientes"
+UI -[dashed]-> "Pedidos"
+
+"Clientes" -[dashed]-> "Persistência"
+"Pedidos" -[dashed]-> "Persistência"
+
+"Persistência" -[dashed]-> "SGBD"
+
+@enduml
